@@ -32,11 +32,17 @@ while ($worker->work())
 	check_workers_by_server('gm_first');
 };
 
-//extends the token, reads its content and adds the content and the token in the database
 function first($job)
 {
+	$max = 10;
+	$job->sendStatus(0, $max);
 	$data = unserialize($job->workload());
-	print_r($data);
+	for ($i=0;$i<$max;$i++)
+	{
+		print_r($data);
+		sleep(1);
+		$job->sendStatus($i, $max);
+	}
 	return serialize($data);
 }
 ?>
