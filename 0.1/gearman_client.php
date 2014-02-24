@@ -1,8 +1,6 @@
 <?php
 
-print_r('hu!');
-
-var_dump( gearman_version() );
+print_r('client!');
 
 $client = new GearmanClient();
 $client->addServer();
