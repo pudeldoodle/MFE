@@ -1,6 +1,6 @@
 <?php
 
-print_r('worker!');
+/*print_r('worker!');
 
 define('_IN_MFE', true);
 
@@ -12,7 +12,7 @@ require_once(_CLASSES.'/MySQL.class.php');
 require_once(_LIBRARIES.'/facebook/facebook.php');
 require_once(_LIBRARIES.'/gearman-admin/GearmanAdmin.php');
 require_once('./functions/gm_admin_functions.php');
-
+*/
 $worker = new GearmanWorker();
 $worker->addServer();
 
@@ -37,5 +37,6 @@ function first($job)
 {
 	$data = unserialize($job->workload());
 	print_r($data);
+	return serialize($data);
 }
 ?>
