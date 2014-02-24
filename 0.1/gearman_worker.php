@@ -1,6 +1,6 @@
 <?php
 
-/*print_r('worker!');
+//print_r('worker!');
 
 define('_IN_MFE', true);
 
@@ -12,14 +12,14 @@ require_once(_CLASSES.'/MySQL.class.php');
 require_once(_LIBRARIES.'/facebook/facebook.php');
 require_once(_LIBRARIES.'/gearman-admin/GearmanAdmin.php');
 require_once('./functions/gm_admin_functions.php');
-*/
+
 $worker = new GearmanWorker();
 $worker->addServer();
 
 $worker->addFunction("gm_first","first");
 
 print_r("\n*** starting worker ".__FILE__." ***\n");
-//check_workers_by_server('gm_add_user');
+check_workers_by_server('gm_first');
 
 while ($worker->work())
 {
@@ -29,7 +29,7 @@ while ($worker->work())
 		echo $worker->returnCode() . PHP_EOL;
 		break;
 	}
-	//check_workers_by_server('gm_add_user');
+	check_workers_by_server('gm_first');
 };
 
 //extends the token, reads its content and adds the content and the token in the database

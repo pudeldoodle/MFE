@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+	   
+	   <!-- CSS -->
+	   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
+
+        <!-- JS -->
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
+	
+	</head>
+	<body>
+	    
+		<div ng-controller="MyController" class="container">
+			<div class="row">
+    			<div class="col-md-4">
+                    <h4>SERVERS</h4>
+                
+                    <div ng-repeat='s in data.servers' >
+                        
+                        <p>Server IP : {{s.ip}}</p>
+                        <p>Workers:</p>
+                        <p>
+                            <span ng-repeat='d in s.details | orderBy : "worker"'>
+                          {{d.worker}} : {{d.total_workers}}<br/>
+                          </span>
+                        </p>
+                    </div>
+    			</div>
+    			
+    			<div class="col-md-8">
+    			    <div class="row">
+            			<h4>WORKERS</h4>
+                        <div ng-repeat='w in data.workers | orderBy : "worker"'  ng-class="{'bg-success': w.running_jobs,'bg-danger' : w.avalaible_workers==0}" class="col-md-4">
+                           
+                            <h5>{{w.worker}}</h5>
+                             <p>
+                                Queued Jobs : {{w.queued_jobs}}<br/>
+                                Running Jobs : {{w.running_jobs}}<br/>
+                                Avalaible Workers : {{w.avalaible_workers}}
+                            </p>
+                        </div>
+                     </div>
+                 </div>
+              </div>
+		</div>
+		<script type="text/javascript" src="js/app.js"></script>
+	</body>
+</html>

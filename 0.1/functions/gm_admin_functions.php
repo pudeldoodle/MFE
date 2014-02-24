@@ -33,7 +33,7 @@ function check_workers_by_server($function_name)
 	{
 		if($server == "172.28.8.200")
 		{
-			if($functions[$function_name]>_YEL_MAX_WORKERS_BY_SERVER) die;
+			if($functions[$function_name]>_MFE_MAX_WORKERS_BY_SERVER) die;
 		}
 	}
 }
